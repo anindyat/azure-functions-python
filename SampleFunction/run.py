@@ -18,7 +18,7 @@ import os
 # even if it's made up :)
 # if not details.has_key("email"):
 #    details["email"] = "%s@outlook.com" % uuid.uuid4()
-
+print "Hello World"
 print "Storing the contact details in Azure Document DB"
 # doc = repository.insert(details)
 # print "Repository returned %s" % doc
