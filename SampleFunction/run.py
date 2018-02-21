@@ -1,4 +1,4 @@
-import urllib.request
+import urllib2
 import json
 
 def printResponse(response):
@@ -6,7 +6,7 @@ def printResponse(response):
     print(jData)
 
 def getData(url):
-    return urllib.request.urlopen(url).read()
+    return urllib2.urlopen(url).read()
 
 print("Starting...")
 
