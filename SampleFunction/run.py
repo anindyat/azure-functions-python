@@ -1,9 +1,12 @@
-import requests
+import urllib.request
 import json
 
 def printResponse(response):
-    jData = json.loads(response.content)
+    jData = json.loads(response)
     print(jData)
+
+def getData(url):
+    return urllib.request.urlopen(url).read()
 
 print("Starting...")
 
@@ -11,14 +14,21 @@ print("Starting...")
 getAllUrl = "http://pythontestweb01-stag.azurewebsites.net/api/security/"
 getOneUrl = "http://pythontestweb01-stag.azurewebsites.net/api/security/1"
 
-print("Getting first item for security...")
+print("_______________________________________________________")
 
-response = requests.get(getOneUrl)
+print("Getting first item for security...")
+print("_______________________________________________________")
+
+response = getData(getOneUrl)
 printResponse(response)
+
+print("_______________________________________________________")
 
 print("Now getting all available securities ...")
+print("_______________________________________________________")
 
-response = requests.get(getAllUrl)
+response = getData(getAllUrl)
 printResponse(response)
+
 
 print("Securities downloaded.")
