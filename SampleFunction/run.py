@@ -1,24 +1,24 @@
+import requests
 import json
-import os
-#import uuid
 
-#import docdb
+def printResponse(response):
+    jData = json.loads(response.content)
+    print(jData)
 
-# request body (POST requests) is stored in a file,
-# and the file path is exposed as an environment variable
-# with open(os.environ["REQ"]) as req:
-#    details = json.loads(req.read())
+print("Starting...")
 
-# note that there's no init for functions, so this will be
-# executed everytime the function is triggered :(
-# see https://github.com/Azure/azure-webjobs-sdk-script/issues/586
-# repository = docdb.Repository(os.environ["DOCDB_HOST"], os.environ["DOCDB_KEY"])
+# First set up the URL for getting security data from rest-api hosted on Azure
+getAllUrl = "http://pythontestweb01-stag.azurewebsites.net/api/security/"
+getOneUrl = "http://pythontestweb01-stag.azurewebsites.net/api/security/1"
 
-# using email as partition key, so ensure that it exists,
-# even if it's made up :)
-# if not details.has_key("email"):
-#    details["email"] = "%s@outlook.com" % uuid.uuid4()
-print "Hello World"
-print "Storing the contact details in Azure Document DB"
-# doc = repository.insert(details)
-# print "Repository returned %s" % doc
+print("Getting first item for security...")
+
+response = requests.get(getOneUrl)
+printResponse(response)
+
+print("Now getting all available securities ...")
+
+response = requests.get(getAllUrl)
+printResponse(response)
+
+print("Securities downloaded.")
